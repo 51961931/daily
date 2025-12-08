@@ -4,74 +4,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的每日自动日报</title>
+    <title>科技大佬观察室</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f6f8fa; color: #24292e; }
-        .header { text-align: center; margin-bottom: 40px; }
-        .quote-card { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 30px; border-radius: 12px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
-        .quote-text { font-size: 1.4em; font-style: italic; margin-bottom: 10px; }
-        .quote-author { text-align: right; font-size: 0.9em; opacity: 0.9; }
+        :root { --primary: #1da1f2; --bg: #f5f8fa; --card-bg: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; color: #14171a; }
+        .container { max-width: 1000px; margin: 0 auto; }
         
-        .project-list { background: white; border-radius: 12px; padding: 20px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .project-item { padding: 20px 0; border-bottom: 1px solid #eaecef; }
-        .project-item:last-child { border-bottom: none; }
-        .project-title { font-size: 1.2em; font-weight: bold; color: #0366d6; text-decoration: none; }
-        .project-title:hover { text-decoration: underline; }
-        .project-desc { color: #586069; margin: 8px 0; font-size: 0.95em; }
-        .project-meta { font-size: 0.85em; color: #6a737d; }
-        .footer { text-align: center; margin-top: 50px; color: #959da5; font-size: 0.8em; }
+        .header { text-align: center; margin-bottom: 40px; padding: 20px 0; }
+        .header h1 { margin: 0; font-size: 2.5em; color: #14171a; }
+        .header p { color: #657786; margin-top: 10px; }
+        
+        /* 网格布局 */
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        
+        /* 卡片样式 */
+        .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e1e8ed; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        
+        .top-row { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; }
+        .tag { background-color: #e8f5fd; color: var(--primary); padding: 4px 8px; border-radius: 999px; font-size: 0.75em; font-weight: bold; }
+        
+        .name { font-size: 1.2em; font-weight: bold; margin: 0; }
+        .handle { color: #657786; font-size: 0.9em; margin-bottom: 12px; }
+        .desc { font-size: 0.9em; color: #14171a; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
+        
+        .btn { display: block; text-align: center; background-color: #000; color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; transition: background 0.2s; }
+        .btn:hover { background-color: #333; }
+        
+        .footer { text-align: center; margin-top: 40px; color: #657786; font-size: 0.8em; }
     </style>
 </head>
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>🔭 科技大佬观察室</h1>
+            <p>追踪 20 位全球顶级科技领袖 · 最后更新: 2025-12-08 15:16:22 UTC</p>
+        </div>
 
-    <div class="header">
-        <h1>🚀 每日自动日报</h1>
-        <p>更新时间: 2025-12-08 15:04:17 UTC</p>
+        <div class="grid">
+
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Tech King</span>
+                </div>
+                <div class="name">Elon Musk</div>
+                <div class="handle">@elonmusk</div>
+                <div class="desc">Tesla, SpaceX, xAI, 还有 X 的老板</div>
+                <a href="https://x.com/elonmusk" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">OpenAI</span>
+                </div>
+                <div class="name">Sam Altman</div>
+                <div class="handle">@sama</div>
+                <div class="desc">ChatGPT 之父，OpenAI CEO</div>
+                <a href="https://x.com/sama" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">OpenAI</span>
+                </div>
+                <div class="name">Greg Brockman</div>
+                <div class="handle">@gdb</div>
+                <div class="desc">OpenAI 联合创始人，技术硬核</div>
+                <a href="https://x.com/gdb" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">AI Scientist</span>
+                </div>
+                <div class="name">Yann LeCun</div>
+                <div class="handle">@ylecun</div>
+                <div class="desc">Meta 首席 AI 科学家，图灵奖得主</div>
+                <a href="https://x.com/ylecun" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">AI Educator</span>
+                </div>
+                <div class="name">Andrej Karpathy</div>
+                <div class="handle">@karpathy</div>
+                <div class="desc">前 Tesla AI 总监，现专注 AI 教学与开发</div>
+                <a href="https://x.com/karpathy" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">DeepMind</span>
+                </div>
+                <div class="name">Demis Hassabis</div>
+                <div class="handle">@demishassabis</div>
+                <div class="desc">Google DeepMind 创始人，AlphaGo 之父</div>
+                <a href="https://x.com/demishassabis" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">AI Educator</span>
+                </div>
+                <div class="name">Andrew Ng</div>
+                <div class="handle">@AndrewYNg</div>
+                <div class="desc">吴恩达，AI 教育家，Coursera 创始人</div>
+                <a href="https://x.com/AndrewYNg" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">AI Community</span>
+                </div>
+                <div class="name">Hugging Face</div>
+                <div class="handle">@huggingface</div>
+                <div class="desc">AI 界的 Github，开源模型大本营</div>
+                <a href="https://x.com/huggingface" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Podcast</span>
+                </div>
+                <div class="name">Lex Fridman</div>
+                <div class="handle">@lexfridman</div>
+                <div class="desc">顶级科技播客，经常采访马斯克和奥特曼</div>
+                <a href="https://x.com/lexfridman" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Keras</span>
+                </div>
+                <div class="name">Francois Chollet</div>
+                <div class="handle">@fchollet</div>
+                <div class="desc">Keras 作者，Google AI 研究员</div>
+                <a href="https://x.com/fchollet" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Apple</span>
+                </div>
+                <div class="name">Tim Cook</div>
+                <div class="handle">@tim_cook</div>
+                <div class="desc">苹果 CEO</div>
+                <a href="https://x.com/tim_cook" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Reviewer</span>
+                </div>
+                <div class="name">Marques Brownlee</div>
+                <div class="handle">@MKBHD</div>
+                <div class="desc">地表最强科技数码博主</div>
+                <a href="https://x.com/MKBHD" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Analyst</span>
+                </div>
+                <div class="name">Ming-Chi Kuo</div>
+                <div class="handle">@mingchikuo</div>
+                <div class="desc">郭明錤，最准的苹果供应链分析师</div>
+                <a href="https://x.com/mingchikuo" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Bloomberg</span>
+                </div>
+                <div class="name">Mark Gurman</div>
+                <div class="handle">@markgurman</div>
+                <div class="desc">彭博社记者，苹果爆料非常准</div>
+                <a href="https://x.com/markgurman" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Reviewer</span>
+                </div>
+                <div class="name">Mrwhosetheboss</div>
+                <div class="handle">@Mrwhosetheboss</div>
+                <div class="desc">顶级手机评测博主，特效华丽</div>
+                <a href="https://x.com/Mrwhosetheboss" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Microsoft</span>
+                </div>
+                <div class="name">Satya Nadella</div>
+                <div class="handle">@satyanadella</div>
+                <div class="desc">微软 CEO，带领微软重回巅峰</div>
+                <a href="https://x.com/satyanadella" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Google</span>
+                </div>
+                <div class="name">Sundar Pichai</div>
+                <div class="handle">@sundarpichai</div>
+                <div class="desc">谷歌 CEO</div>
+                <a href="https://x.com/sundarpichai" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">VC/Startup</span>
+                </div>
+                <div class="name">Paul Graham</div>
+                <div class="handle">@paulg</div>
+                <div class="desc">Y Combinator 创始人，硅谷创业教父</div>
+                <a href="https://x.com/paulg" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Legend</span>
+                </div>
+                <div class="name">John Carmack</div>
+                <div class="handle">@ID_AA_Carmack</div>
+                <div class="desc">传奇程序员，前 Oculus CTO，FPS游戏之父</div>
+                <a href="https://x.com/ID_AA_Carmack" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="top-row">
+                    <span class="tag">Tech News</span>
+                </div>
+                <div class="name">The Verge</div>
+                <div class="handle">@verge</div>
+                <div class="desc">顶级科技媒体，一手资讯</div>
+                <a href="https://x.com/verge" target="_blank" class="btn">访问主页 →</a>
+            </div>
+    
+        </div>
+        <div class="footer">
+            Powered by GitHub Actions | Data curated manually
+        </div>
     </div>
-
-    <div class="quote-card">
-        <div class="quote-text">“妆罢低声问夫婿，画眉深浅入时无。”</div>
-        <div class="quote-author">—— 近试上张籍水部 / 近试上张水部 / 闺意献张水部</div>
-    </div>
-
-    <div class="project-list">
-        <h2 style="border-bottom: 2px solid #eaecef; padding-bottom: 10px;">🔥 本周 GitHub 热门 Python 项目</h2>
-        
-        <div class="project-item">
-            <a href="https://github.com/assetnote/react2shell-scanner" target="_blank" class="project-title">react2shell-scanner</a>
-            <p class="project-desc">High Fidelity Detection Mechanism for RSC/Next.js RCE (CVE-2025-55182 & CVE-2025-66478)</p>
-            <div class="project-meta">⭐ Stars: 1291</div>
-        </div>
-        
-        <div class="project-item">
-            <a href="https://github.com/msanft/CVE-2025-55182" target="_blank" class="project-title">CVE-2025-55182</a>
-            <p class="project-desc">Explanation and full RCE PoC for CVE-2025-55182</p>
-            <div class="project-meta">⭐ Stars: 691</div>
-        </div>
-        
-        <div class="project-item">
-            <a href="https://github.com/Alibaba-Quark/LiveAvatar" target="_blank" class="project-title">LiveAvatar</a>
-            <p class="project-desc">Implementation of "Live Avatar: Streaming Real-time Audio-Driven Avatar Generation with Infinite Length"</p>
-            <div class="project-meta">⭐ Stars: 478</div>
-        </div>
-        
-        <div class="project-item">
-            <a href="https://github.com/PastKing/tgbot-verify" target="_blank" class="project-title">tgbot-verify</a>
-            <p class="project-desc">一个基于 Python Telegram Bot 的自动化认证工具，能够自动完成 SheerID 平台的学生/教师身份验证流程。</p>
-            <div class="project-meta">⭐ Stars: 403</div>
-        </div>
-        
-        <div class="project-item">
-            <a href="https://github.com/Sean-V-Dev/HMLR-Agentic-AI-Memory-System" target="_blank" class="project-title">HMLR-Agentic-AI-Memory-System</a>
-            <p class="project-desc">Living memory for AI</p>
-            <div class="project-meta">⭐ Stars: 300</div>
-        </div>
-        
-    </div>
-
-    <div class="footer">
-        Powered by GitHub Actions & Python
-    </div>
-
 </body>
 </html>
