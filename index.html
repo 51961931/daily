@@ -4,248 +4,355 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>科技大佬观察室</title>
+    <title>科技大V与今日头条</title>
     <style>
-        :root { --primary: #1da1f2; --bg: #f5f8fa; --card-bg: #ffffff; }
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 20px; color: #14171a; }
-        .container { max-width: 1000px; margin: 0 auto; }
+        :root { --primary: #007bff; --bg: #f4f6f9; --card-bg: #ffffff; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background-color: var(--bg); margin: 0; padding: 0; color: #333; }
         
-        .header { text-align: center; margin-bottom: 40px; padding: 20px 0; }
-        .header h1 { margin: 0; font-size: 2.5em; color: #14171a; }
-        .header p { color: #657786; margin-top: 10px; }
+        .container { max-width: 1100px; margin: 0 auto; padding: 20px; }
         
-        /* 网格布局 */
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+        /* 头部 */
+        .header { text-align: center; padding: 40px 0; }
+        .header h1 { margin: 0; font-size: 2.2rem; color: #2c3e50; }
+        .header p { color: #7f8c8d; margin-top: 10px; }
+
+        /* 新闻板块 (新功能) */
+        .news-section { background: #fff; border-radius: 12px; padding: 25px; margin-bottom: 40px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .news-title { font-size: 1.5rem; border-left: 5px solid var(--primary); padding-left: 15px; margin-bottom: 20px; color: #2c3e50; }
+        .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; }
+        .news-column h3 { color: var(--primary); border-bottom: 1px solid #eee; padding-bottom: 10px; }
+        .news-item { margin-bottom: 15px; }
+        .news-item a { text-decoration: none; color: #34495e; font-weight: 500; font-size: 1rem; display: block; margin-bottom: 5px; }
+        .news-item a:hover { color: var(--primary); text-decoration: underline; }
+        .news-meta { font-size: 0.8rem; color: #95a5a6; }
+
+        /* 大V 卡片板块 */
+        .section-title { text-align: center; margin-bottom: 30px; font-size: 1.5rem; color: #2c3e50; font-weight: bold; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px; }
+        .card { background: var(--card-bg); border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); transition: transform 0.2s; border: 1px solid #eee; display: flex; flex-direction: column; }
+        .card:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
         
-        /* 卡片样式 */
-        .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); transition: transform 0.2s, box-shadow 0.2s; border: 1px solid #e1e8ed; display: flex; flex-direction: column; }
-        .card:hover { transform: translateY(-3px); box-shadow: 0 8px 16px rgba(0,0,0,0.1); }
+        .card-top { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; }
+        .tag { background: #e3f2fd; color: #1976d2; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; }
+        .name { font-size: 1.1rem; font-weight: bold; margin: 0; }
+        .handle { color: #7f8c8d; font-size: 0.85rem; margin-bottom: 10px; }
+        .desc { font-size: 0.9rem; color: #555; line-height: 1.5; flex-grow: 1; margin-bottom: 15px; }
+        .btn { display: block; text-align: center; background: #24292e; color: white; text-decoration: none; padding: 8px; border-radius: 6px; font-size: 0.9rem; transition: background 0.2s; }
+        .btn:hover { background: #000; }
         
-        .top-row { display: flex; justify-content: space-between; align-items: start; margin-bottom: 10px; }
-        .tag { background-color: #e8f5fd; color: var(--primary); padding: 4px 8px; border-radius: 999px; font-size: 0.75em; font-weight: bold; }
-        
-        .name { font-size: 1.2em; font-weight: bold; margin: 0; }
-        .handle { color: #657786; font-size: 0.9em; margin-bottom: 12px; }
-        .desc { font-size: 0.9em; color: #14171a; line-height: 1.5; flex-grow: 1; margin-bottom: 20px; }
-        
-        .btn { display: block; text-align: center; background-color: #000; color: white; text-decoration: none; padding: 10px; border-radius: 8px; font-weight: bold; transition: background 0.2s; }
-        .btn:hover { background-color: #333; }
-        
-        .footer { text-align: center; margin-top: 40px; color: #657786; font-size: 0.8em; }
+        .footer { text-align: center; margin-top: 50px; color: #bdc3c7; font-size: 0.8rem; padding-bottom: 20px; }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔭 科技大佬观察室</h1>
-            <p>追踪 20 位全球顶级科技领袖 · 最后更新: 2025-12-08 15:16:22 UTC</p>
+            <h1>Daily Tech Observer</h1>
+            <p>更新时间 (UTC): 2025-12-08 15:37:11 UTC</p>
         </div>
 
+        <div class="news-section">
+            <div class="news-title">📰 今日科技头条 (基于 Google News)</div>
+            <div class="news-grid">
+
+                <div class="news-column">
+                    <h3>🔥 马斯克</h3>
+    
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMijgJBVV95cUxOWDVGa29UX0kwZEk4eVFiZmExQlBia21RemVMMWRPMHgydk13VVZPQV9HRWFpLWdDLWV5dnRETHRlazF0Vmw2aFNOdlRURnF2SlVrMVE0Vk9VbV92dFNzcWVUdlh6TUtDM29SVGFRZjVwZXNucXNpSk0tYzdIRnk0MUtaMEpFMU55SzIwOU5yNnZzZW1fcEV2LTBHMTBHWEYzWkZqRXU4dUUxdGVZSGRDeUd4Zmo3bURLUVg4UGs5RF9aWGM5ZjZtcTN1cEFvY05kNEtUTDNJeEN0YkpxM3huVnhxdzBnSnlVckhpUm5iajhEVS1wb0ZLazhLdkRZX2FrODNMdDAzZDF0dVJ5S2fSAY4CQVVfeXFMTnQwekNETWxfaGdEMjNqclJTel81RkplTHRNaUVMSGR0c255N0g5UER1U2FFcUgzRXkxWnlHTlFWT3JhbW9Wd3FTYTdHMWZnaWdVOTRSRHB5eEJXT0dTaHVSRVNwWnM5VVdKUGFUUjdsUzhfN1NDZ1IwWXYxS1RpRktDN29FREhBX0RZX19IQ2NXTDJ1SWhDSVYxeGJ1Y2pFWk9BbUxLMkxmck9abFRfWTVrdXVIMTB6NWlLQVlOVmpOTVdlUXdNdW5UYkFZdFE1N2c4MTl2TldLcXNoUEloZzBjS1owNWNrR1NuTjNOa1NPYXpSeF9QTXA1TmtDMk9PQUNEbHBpODlFMjhIT0Jn?oc=5" target="_blank">X被罚款1.2亿欧元 马斯克对欧盟火力全开</a>
+                        <div class="news-meta">DW · Sun, 07 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE5OVVFjT0JPYUUzSWRVay11XzBvNndGOVhmWHR6REVPS2dONm5pczJFWjlKMkVYc1Y4TzY4RDV2ZXVZanF6UVltaQ?oc=5" target="_blank">马斯克回应“SpaceX冲击8000亿美元估值”传闻</a>
+                        <div class="news-meta">财联社 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1ya0laakxaTFhmLXpBcWc0ZGRFNV9Oc1VxRnh6XzFmbVJIT19QOVlNTXg0XzROQ0ZYQjJxMmVTQlpzRnItTmh4VzVnc0pBVDBVYW9FZ1dsMzZHQXNKaEUzTDlHMGU?oc=5" target="_blank">“废除欧盟”！马斯克反应激烈另有玄机 | 京酿馆</a>
+                        <div class="news-meta">新京报 · Mon, 08 Dec 2025</div>
+                    </div>
+        </div>
+                <div class="news-column">
+                    <h3>🔥 OpenAI</h3>
+    
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMihAFBVV95cUxPaDl6bWJCN2RQbk85elRPUHBISnRjZF9fT3N6M2p0RWdwZndVUTVnbWxyekxjYjg5bnYwX29qVzZITkUtOEFTb3JvS1NfNE9TTDR1RlBmUk9LalBrRnFLQjlTUWFNNXRPeGM3eDA3VlFxVllXOU9xa0RtYzdlNjdiVk9oNDI?oc=5" target="_blank">OpenAI会是第一个倒闭的AI独角兽吗？</a>
+                        <div class="news-meta">新浪财经 · Sun, 07 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE10VF9RYkExMjM5QmlJTFhfSEVmOWNPT0pOQmVjVDVnVy1WdFlGWHlfRll6V2otLXNOeDlreUJkMm1rRThLMWFnSG4zSjk2dkRjckFTcWtSbnE?oc=5" target="_blank">GPT-5不再顶级 OpenAI跌落神坛：一众小弟跟着遭殃</a>
+                        <div class="news-meta">驱动之家 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9OUzN6dVhYd0ZNWWZHdkZDdS1YOU41NjF1Vjg5MHhnZjBYUmVnQjR6M0gtTUtTcjNNTDJKV2Q5VzhMZ3UxUVVwdF9LRG1OZ3o5QVQ4?oc=5" target="_blank">预计下周二！OpenAI“紧急提前”发布GPT 5.2，应对Gemini 3的火爆</a>
+                        <div class="news-meta">华尔街见闻 · Sat, 06 Dec 2025</div>
+                    </div>
+        </div>
+                <div class="news-column">
+                    <h3>🔥 苹果公司</h3>
+    
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTFBrODFYMzVLWmZCUUEtTmNlZVJDelA5TGYwQWRVV0JXOTRXUk5halRpamVLYUJRcXRBUzI2VnBiY2tkVEx6X1Q0dk1BNA?oc=5" target="_blank">苹果公司：苹果健身+拓展至 28 个新市场。</a>
+                        <div class="news-meta">新浪财经 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBSODhsdUlSeUFMNjY0RFVSRmxUdDI5Z1ozU3dfZmh3TGtFUlhDZ2N4aEoydUJuakhWZTFDaFpyWUJRb2lzMl9lNVhPWHlWQlZKM2Jud1NFMA?oc=5" target="_blank">苹果，突然降价！</a>
+                        <div class="news-meta">证券时报 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMieEFVX3lxTE1YbTRFSEVoUWRzeXRxd3pPTU0xMy1VV1FyQnU1TmlzTF9sV2x3emc0UlRKQXlFTm85VHdGeHlWMFY4N3lwMjhvR0QxeVZkeFAtTlNGWUhkc1hTNmtrUnZXRjJXRk5Sb29Nb0Vfb3RxNU9qWFhURU1Zag?oc=5" target="_blank">AI爆发，苹果“掉队”，公司管理层遭遇多年来最激烈人事动荡</a>
+                        <div class="news-meta">新浪财经 · Mon, 08 Dec 2025</div>
+                    </div>
+        </div>
+                <div class="news-column">
+                    <h3>🔥 英伟达</h3>
+    
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiU0FVX3lxTE9BblpQVjY1OTJ2N0Y4YnplQVpCWTVOZHZDVmtmR0xlNHBCRWtIMmgwLVR3czRLOU42UGpPUHRRYnFxcnFCTkNZRzRmVXhJd3Uwdzdn?oc=5" target="_blank">刚刚，英伟达CUDA迎来史上最大更新！</a>
+                        <div class="news-meta">华尔街见闻 · Sat, 06 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiWEFVX3lxTE9LbzZjeWFpOTQ2WUFyWlBiYkdxUkFNVGNrX2s3SExTUGpFNkl3bmNJQ09pMEtEVmVlZWNxS0hNZ3dnVi1ubTdDOXdmNF80bDUzaFJZR3VxXzI?oc=5" target="_blank">谷歌憋了十年的大招 让英伟达好日子到头了？</a>
+                        <div class="news-meta">驱动之家 · Sat, 06 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1SanlYMVNzQVZzTWQ3WE95UlpSbTZQNld2RXloV0xOVU1nOGJuajVNUm0waVhNSnVmMklxZ3JDUGxaRmVtcGE5Tmd4Nndud3JkQnlFX2JwVkpKdmJxZHpSRmlDWG9MXzlJRC1MV0hNNTk?oc=5" target="_blank">黄仁勋如何带领英伟达穿越周期 危机预判与战略布局</a>
+                        <div class="news-meta">中华网 · Mon, 08 Dec 2025</div>
+                    </div>
+        </div>
+                <div class="news-column">
+                    <h3>🔥 人工智能</h3>
+    
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxQNHFPNmtSd1NqaWpJNDNhdktidUk1TjlEQzRLbGliaEYyNHhpWFB4MHFqLVBHY2V1TVgzV2NZaFdkYjc4SndoTUQ4LUJWSGpyLW51RTVQSThYTGFsRGNhS0hJakYzNThwOC1PTGFleTBBaWlpcjB2Y24tVGViM1o1UWFFSlpnSmFfVVJaX2ZveGt6UHdLZmwtRQ?oc=5" target="_blank">山东：2025年人工智能核心产业营收规模预计突破1200亿元，约占全国10%左右</a>
+                        <div class="news-meta">新浪财经 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFB0TW8tbEJrMlpaUHpyX1BJYThucUlnOW9qUEpqbU11YlhKa0kzWTBCWWRhUGk2MldWN0R6eS1fcnN1eGNLRlVWRkg0M0kxUHZJMlZSQmNjUzBmTDdfVmxpY1htdFktUDM2VEtvaFVkMWE?oc=5" target="_blank">特朗普：本周将发布一项关于人工智能的单一规则行政命令</a>
+                        <div class="news-meta">新浪新闻_手机新浪网 · Mon, 08 Dec 2025</div>
+                    </div>
+        
+                    <div class="news-item">
+                        <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE9iYWRETnNDcXFMYWRaMVMzOUhId3M5U3gxdjE5TlVFQmV1LTFRQUtRaTBHWWxHWVVjWWdkZ1FsZUx0dlJBY21jYmRGUm0?oc=5" target="_blank">特朗普：本周将针对人工智能发布单一规则行政命令</a>
+                        <div class="news-meta">凤凰网 · Mon, 08 Dec 2025</div>
+                    </div>
+        </div>
+            </div>
+        </div>
+
+        <div class="section-title">🔭 重点关注大V (20位)</div>
         <div class="grid">
 
             <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">Tech King</span>
                 </div>
                 <div class="name">Elon Musk</div>
                 <div class="handle">@elonmusk</div>
-                <div class="desc">Tesla, SpaceX, xAI, 还有 X 的老板</div>
-                <a href="https://x.com/elonmusk" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">Tesla, SpaceX, xAI, X 老板</div>
+                <a href="https://x.com/elonmusk" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">OpenAI</span>
                 </div>
                 <div class="name">Sam Altman</div>
                 <div class="handle">@sama</div>
                 <div class="desc">ChatGPT 之父，OpenAI CEO</div>
-                <a href="https://x.com/sama" target="_blank" class="btn">访问主页 →</a>
+                <a href="https://x.com/sama" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
-                    <span class="tag">OpenAI</span>
-                </div>
-                <div class="name">Greg Brockman</div>
-                <div class="handle">@gdb</div>
-                <div class="desc">OpenAI 联合创始人，技术硬核</div>
-                <a href="https://x.com/gdb" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">AI Scientist</span>
-                </div>
-                <div class="name">Yann LeCun</div>
-                <div class="handle">@ylecun</div>
-                <div class="desc">Meta 首席 AI 科学家，图灵奖得主</div>
-                <a href="https://x.com/ylecun" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">AI Educator</span>
-                </div>
-                <div class="name">Andrej Karpathy</div>
-                <div class="handle">@karpathy</div>
-                <div class="desc">前 Tesla AI 总监，现专注 AI 教学与开发</div>
-                <a href="https://x.com/karpathy" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">DeepMind</span>
-                </div>
-                <div class="name">Demis Hassabis</div>
-                <div class="handle">@demishassabis</div>
-                <div class="desc">Google DeepMind 创始人，AlphaGo 之父</div>
-                <a href="https://x.com/demishassabis" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">AI Educator</span>
-                </div>
-                <div class="name">Andrew Ng</div>
-                <div class="handle">@AndrewYNg</div>
-                <div class="desc">吴恩达，AI 教育家，Coursera 创始人</div>
-                <a href="https://x.com/AndrewYNg" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">AI Community</span>
-                </div>
-                <div class="name">Hugging Face</div>
-                <div class="handle">@huggingface</div>
-                <div class="desc">AI 界的 Github，开源模型大本营</div>
-                <a href="https://x.com/huggingface" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">Podcast</span>
-                </div>
-                <div class="name">Lex Fridman</div>
-                <div class="handle">@lexfridman</div>
-                <div class="desc">顶级科技播客，经常采访马斯克和奥特曼</div>
-                <a href="https://x.com/lexfridman" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">Keras</span>
-                </div>
-                <div class="name">Francois Chollet</div>
-                <div class="handle">@fchollet</div>
-                <div class="desc">Keras 作者，Google AI 研究员</div>
-                <a href="https://x.com/fchollet" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">Apple</span>
                 </div>
                 <div class="name">Tim Cook</div>
                 <div class="handle">@tim_cook</div>
-                <div class="desc">苹果 CEO</div>
-                <a href="https://x.com/tim_cook" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">苹果 CEO，供应链大师</div>
+                <a href="https://x.com/tim_cook" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
+                <div class="card-top">
+                    <span class="tag">NVIDIA</span>
+                </div>
+                <div class="name">Jensen Huang</div>
+                <div class="handle">@NVIDIA</div>
+                <div class="desc">黄仁勋，AI 算力霸主 (皮衣刀客)</div>
+                <a href="https://x.com/NVIDIA" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Meta AI</span>
+                </div>
+                <div class="name">Yann LeCun</div>
+                <div class="handle">@ylecun</div>
+                <div class="desc">图灵奖得主，Meta 首席科学家</div>
+                <a href="https://x.com/ylecun" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">DeepMind</span>
+                </div>
+                <div class="name">Demis Hassabis</div>
+                <div class="handle">@demishassabis</div>
+                <div class="desc">AlphaGo 之父，Google DeepMind</div>
+                <a href="https://x.com/demishassabis" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
                     <span class="tag">Reviewer</span>
                 </div>
-                <div class="name">Marques Brownlee</div>
+                <div class="name">MKBHD</div>
                 <div class="handle">@MKBHD</div>
-                <div class="desc">地表最强科技数码博主</div>
-                <a href="https://x.com/MKBHD" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">千万粉顶流数码博主</div>
+                <a href="https://x.com/MKBHD" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">Analyst</span>
                 </div>
                 <div class="name">Ming-Chi Kuo</div>
                 <div class="handle">@mingchikuo</div>
-                <div class="desc">郭明錤，最准的苹果供应链分析师</div>
-                <a href="https://x.com/mingchikuo" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">郭明錤，苹果最准分析师</div>
+                <a href="https://x.com/mingchikuo" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
-                    <span class="tag">Bloomberg</span>
-                </div>
-                <div class="name">Mark Gurman</div>
-                <div class="handle">@markgurman</div>
-                <div class="desc">彭博社记者，苹果爆料非常准</div>
-                <a href="https://x.com/markgurman" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
-                    <span class="tag">Reviewer</span>
-                </div>
-                <div class="name">Mrwhosetheboss</div>
-                <div class="handle">@Mrwhosetheboss</div>
-                <div class="desc">顶级手机评测博主，特效华丽</div>
-                <a href="https://x.com/Mrwhosetheboss" target="_blank" class="btn">访问主页 →</a>
-            </div>
-    
-            <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">Microsoft</span>
                 </div>
                 <div class="name">Satya Nadella</div>
                 <div class="handle">@satyanadella</div>
-                <div class="desc">微软 CEO，带领微软重回巅峰</div>
-                <a href="https://x.com/satyanadella" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">微软 CEO</div>
+                <a href="https://x.com/satyanadella" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
+                <div class="card-top">
                     <span class="tag">Google</span>
                 </div>
                 <div class="name">Sundar Pichai</div>
                 <div class="handle">@sundarpichai</div>
                 <div class="desc">谷歌 CEO</div>
-                <a href="https://x.com/sundarpichai" target="_blank" class="btn">访问主页 →</a>
+                <a href="https://x.com/sundarpichai" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
-                    <span class="tag">VC/Startup</span>
+                <div class="card-top">
+                    <span class="tag">AI Hub</span>
+                </div>
+                <div class="name">Hugging Face</div>
+                <div class="handle">@huggingface</div>
+                <div class="desc">AI 界的 GitHub</div>
+                <a href="https://x.com/huggingface" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">AI Dev</span>
+                </div>
+                <div class="name">Andrej Karpathy</div>
+                <div class="handle">@karpathy</div>
+                <div class="desc">前 Tesla AI 总监，现大神级讲师</div>
+                <a href="https://x.com/karpathy" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Podcast</span>
+                </div>
+                <div class="name">Lex Fridman</div>
+                <div class="handle">@lexfridman</div>
+                <div class="desc">硬核科技访谈，采访过所有人</div>
+                <a href="https://x.com/lexfridman" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">YC</span>
                 </div>
                 <div class="name">Paul Graham</div>
                 <div class="handle">@paulg</div>
-                <div class="desc">Y Combinator 创始人，硅谷创业教父</div>
-                <a href="https://x.com/paulg" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">硅谷创业教父</div>
+                <a href="https://x.com/paulg" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
-                    <span class="tag">Legend</span>
+                <div class="card-top">
+                    <span class="tag">Crypto</span>
                 </div>
-                <div class="name">John Carmack</div>
-                <div class="handle">@ID_AA_Carmack</div>
-                <div class="desc">传奇程序员，前 Oculus CTO，FPS游戏之父</div>
-                <a href="https://x.com/ID_AA_Carmack" target="_blank" class="btn">访问主页 →</a>
+                <div class="name">Vitalik Buterin</div>
+                <div class="handle">@VitalikButerin</div>
+                <div class="desc">V神，虽然你不想要Web3，但他也是技术大神</div>
+                <a href="https://x.com/VitalikButerin" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
             <div class="card">
-                <div class="top-row">
-                    <span class="tag">Tech News</span>
+                <div class="card-top">
+                    <span class="tag">Linux</span>
+                </div>
+                <div class="name">Linus Torvalds</div>
+                <div class="handle">@Linux</div>
+                <div class="desc">Linux 之父 (非X活跃，致敬位)</div>
+                <a href="https://x.com/Linux" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Scoop</span>
+                </div>
+                <div class="name">Mark Gurman</div>
+                <div class="handle">@markgurman</div>
+                <div class="desc">彭博社苹果爆料记者</div>
+                <a href="https://x.com/markgurman" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Media</span>
                 </div>
                 <div class="name">The Verge</div>
                 <div class="handle">@verge</div>
-                <div class="desc">顶级科技媒体，一手资讯</div>
-                <a href="https://x.com/verge" target="_blank" class="btn">访问主页 →</a>
+                <div class="desc">主流科技媒体</div>
+                <a href="https://x.com/verge" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Media</span>
+                </div>
+                <div class="name">Wired</div>
+                <div class="handle">@WIRED</div>
+                <div class="desc">连线杂志，深度科技报道</div>
+                <a href="https://x.com/WIRED" target="_blank" class="btn">去主页看看 →</a>
+            </div>
+    
+            <div class="card">
+                <div class="card-top">
+                    <span class="tag">Media</span>
+                </div>
+                <div class="name">TechCrunch</div>
+                <div class="handle">@TechCrunch</div>
+                <div class="desc">创业公司与独角兽资讯</div>
+                <a href="https://x.com/TechCrunch" target="_blank" class="btn">去主页看看 →</a>
             </div>
     
         </div>
         <div class="footer">
-            Powered by GitHub Actions | Data curated manually
+            Powered by GitHub Actions & Python
         </div>
     </div>
 </body>
