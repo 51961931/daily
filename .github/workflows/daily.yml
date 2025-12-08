@@ -3,7 +3,7 @@ name: Update Daily News
 on:
   workflow_dispatch:      # 允许手动运行
   schedule:
-    - cron: '0 1 * * *'   # 每天 UTC 1点运行
+    - cron: '0 */3 * * *' # 👈 改成了每 3 小时运行一次
 
 # 关键：赋予写权限
 permissions:
