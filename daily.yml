@@ -1,0 +1,46 @@
+name: Update Daily News
+
+on:
+  workflow_dispatch:      # 允许手动运行
+  schedule:
+    - cron: '0 1 * * *'   # 每天 UTC 1点运行
+
+# 关键：赋予写权限
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.9'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run script
+      run: python daily.py
+
+    - name: Commit and Push
+      run: |
+        git config --global user.name "GitHub Action"
+        git config --global user.email "action@github.com"
+        
+        # 强制添加 index.html，不管之前有没有
+        git add index.html
+        
+        # 检查是否有变动，有则提交，无则跳过
+        if git diff --staged --quiet; then
+          echo "No changes to commit."
+        else
+          git commit -m "Auto update: $(date)"
+          git push
+        fi
